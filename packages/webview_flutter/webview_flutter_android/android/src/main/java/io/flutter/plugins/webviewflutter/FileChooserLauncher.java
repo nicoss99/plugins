@@ -18,6 +18,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.webkit.ValueCallback;
 import androidx.core.content.ContextCompat;
+import android.os.Build;
 
 public class FileChooserLauncher extends BroadcastReceiver {
 
@@ -77,7 +78,11 @@ public class FileChooserLauncher extends BroadcastReceiver {
     } else {
       IntentFilter intentFilter = new IntentFilter();
       intentFilter.addAction(ACTION_REQUEST_CAMERA_PERMISSION_FINISHED);
-      context.registerReceiver(this, intentFilter);
+     if (Build.VERSION.SDK_INT >= 34 && getApplicationInfo().targetSdkVersion >= 34) {
+        return context.registerReceiver(this, intentFilter, Context.RECEIVER_EXPORTED);
+      } else {
+        return context.registerReceiver(this, intentFilter);
+      }
 
       Intent intent = new Intent(context, RequestCameraPermissionActivity.class);
       intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -87,7 +92,11 @@ public class FileChooserLauncher extends BroadcastReceiver {
 
   private void showFileChooser() {
     IntentFilter intentFilter = new IntentFilter(ACTION_FILE_CHOOSER_FINISHED);
-    context.registerReceiver(this, intentFilter);
+     if (Build.VERSION.SDK_INT >= 34 && getApplicationInfo().targetSdkVersion >= 34) {
+        return context.registerReceiver(this, intentFilter, Context.RECEIVER_EXPORTED);
+      } else {
+        return context.registerReceiver(this, intentFilter);
+      }
 
     Intent intent = new Intent(context, FileChooserActivity.class);
     intent.putExtra(EXTRA_TITLE, title);
