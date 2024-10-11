@@ -79,9 +79,9 @@ public class FileChooserLauncher extends BroadcastReceiver {
       IntentFilter intentFilter = new IntentFilter();
       intentFilter.addAction(ACTION_REQUEST_CAMERA_PERMISSION_FINISHED);
      if (Build.VERSION.SDK_INT >= 34 && getApplicationInfo().targetSdkVersion >= 34) {
-        return context.registerReceiver(this, intentFilter, Context.RECEIVER_EXPORTED);
+       context.registerReceiver(this, intentFilter, Context.RECEIVER_EXPORTED);
       } else {
-        return context.registerReceiver(this, intentFilter);
+       context.registerReceiver(this, intentFilter);
       }
 
       Intent intent = new Intent(context, RequestCameraPermissionActivity.class);
@@ -93,9 +93,9 @@ public class FileChooserLauncher extends BroadcastReceiver {
   private void showFileChooser() {
     IntentFilter intentFilter = new IntentFilter(ACTION_FILE_CHOOSER_FINISHED);
      if (Build.VERSION.SDK_INT >= 34 && getApplicationInfo().targetSdkVersion >= 34) {
-        return context.registerReceiver(this, intentFilter, Context.RECEIVER_EXPORTED);
+       context.registerReceiver(this, intentFilter, Context.RECEIVER_EXPORTED);
       } else {
-        return context.registerReceiver(this, intentFilter);
+       context.registerReceiver(this, intentFilter);
       }
 
     Intent intent = new Intent(context, FileChooserActivity.class);
