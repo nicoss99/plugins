@@ -44,8 +44,6 @@ public class FileChooserActivity extends Activity {
         getIntent().getBooleanExtra(EXTRA_SHOW_IMAGE_OPTION, false),
         getIntent().getBooleanExtra(EXTRA_SHOW_VIDEO_OPTION, false));
       // Register receiver that may finish this Activity.
-    ContextCompat.registerReceiver(
-        this, broadcastReceiver, closeIntentFilter, ContextCompat.RECEIVER_EXPORTED);
   }
 
   private void showFileChooser(boolean showImageIntent, boolean showVideoIntent) {
